@@ -68,4 +68,16 @@ public class CampoCEP extends JFormattedTextField implements Componente {
   public boolean isValido() {
     return getValor().replace("-", "").replace("_", "").length() == 8;
   }
+
+  @Override
+  public void setValor(Object valor) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void limpar() {
+    // TODO Auto-generated method stub
+
+  }
 }

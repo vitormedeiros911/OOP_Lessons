@@ -9,5 +9,9 @@ public interface Componente {
 
   public String getValor();
 
+  public void setValor(Object valor);
+
   public boolean isValido();
+
+  public void limpar();
 }

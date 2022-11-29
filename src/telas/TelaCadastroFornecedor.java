@@ -23,4 +23,28 @@ public class TelaCadastroFornecedor extends TelaCadastro {
     setSize(600, 400);
     setVisible(true);
   }
+
+  @Override
+  public boolean incluir() {
+    // TODO Auto-generated method stub
+    return false;
+  }
+
+  @Override
+  public boolean alterar() {
+    // TODO Auto-generated method stub
+    return false;
+  }
+
+  @Override
+  public boolean excluir() {
+    // TODO Auto-generated method stub
+    return false;
+  }
+
+  @Override
+  public boolean consultar() {
+    // TODO Auto-generated method stub
+    return false;
+  }
 }

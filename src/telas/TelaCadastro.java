@@ -18,8 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class TelaCadastro extends JInternalFrame implements ActionListener {
-
+public abstract class TelaCadastro extends JInternalFrame implements ActionListener {
   protected final int PADRAO = 0;
   protected final int INCLUINDO = 1;
   protected final int ALTERANDO = 2;
@@ -119,23 +118,49 @@ public class TelaCadastro extends JInternalFrame implements ActionListener {
     }
   }
 
+  public void limpaCampos() {
+    for (Componente campo : campos) {
+      campo.limpar();
+    }
+  }
+
   @Override
   public void actionPerformed(ActionEvent ae) {
     if (ae.getSource() == jbIncluir) {
       estadoTela = INCLUINDO;
+      limpaCampos();
       habilitaCampos(true);
     } else if (ae.getSource() == jbAlterar) {
       estadoTela = ALTERANDO;
+      habilitaCampos(true);
     } else if (ae.getSource() == jbExcluir) {
       estadoTela = EXCLUINDO;
     } else if (ae.getSource() == jbConsultar) {
       estadoTela = CONSULTANDO;
+      consultar();
     } else if (ae.getSource() == jbConfirmar) {
       if (validaCampos()) {
-        estadoTela = PADRAO;
-        habilitaCampos(false);
+        if (estadoTela == INCLUINDO) {
+          if (incluir() == true) {
+            habilitaCampos(false);
+            estadoTela = PADRAO;
+            temDadosNaTela = true;
+          }
+        } else if (estadoTela == ALTERANDO) {
+          if (alterar() == true) {
+            habilitaCampos(false);
+            estadoTela = PADRAO;
+            temDadosNaTela = true;
+          }
+        } else if (estadoTela == EXCLUINDO) {
+          if (excluir() == true) {
+            habilitaCampos(false);
+            limpaCampos();
+            estadoTela = PADRAO;
+            temDadosNaTela = true;
+          }
+        }
       }
-
     } else if (ae.getSource() == jbCancelar) {
       estadoTela = PADRAO;
       habilitaCampos(false);
@@ -174,4 +199,18 @@ public class TelaCadastro extends JInternalFrame implements ActionListener {
       return false;
     }
   }
+
+  public void preencherDados(int pk) {
+    estadoTela = PADRAO;
+    temDadosNaTela = true;
+    habilitaBotoes();
+  }
+
+  abstract public boolean incluir();
+
+  abstract public boolean alterar();
+
+  abstract public boolean excluir();
+
+  abstract public boolean consultar();
 }

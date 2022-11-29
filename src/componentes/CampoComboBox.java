@@ -49,4 +49,16 @@ public class CampoComboBox extends JComboBox implements Componente {
   public boolean isValido() {
     return true;
   }
+
+  @Override
+  public void setValor(Object valor) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void limpar() {
+    // TODO Auto-generated method stub
+
+  }
 }
