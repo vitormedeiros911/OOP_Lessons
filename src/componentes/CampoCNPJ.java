@@ -69,4 +69,16 @@ public class CampoCNPJ extends JFormattedTextField implements Componente {
     return getValor().replace(".", "").replace("-", "")
         .replace("/", "").replace("_", "").length() == 11;
   }
+
+  @Override
+  public void setValor(Object valor) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void limpar() {
+    // TODO Auto-generated method stub
+
+  }
 }
